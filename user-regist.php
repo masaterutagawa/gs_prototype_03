@@ -3,7 +3,6 @@ session_start();
 // 関数ファイル読み込み
 include('function.php');
 
-
 ?>
 <!DOCTYPE html>
 <html lang="ja">
