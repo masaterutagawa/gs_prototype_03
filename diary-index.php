@@ -1,5 +1,9 @@
 <?php
 session_start();
+// user_nameを取得
+$user_name = $_SESSION['user_name'];
+$user_flg = $_SESSION['user_flg'];
+
 // 関数ファイル読み込み
 include('function.php');
 
@@ -9,11 +13,11 @@ loginCheck();
 // DB接続用関数を実行
 $pdo = db_connect();
 
-
-
 // SQL作成&実行
-$sql = "SELECT * FROM dev13_diary WHERE 1";
+$sql = "SELECT * FROM dev13_diary ORDER BY registration_date DESC";
 $stmt = $pdo->prepare($sql);
+
+
 
 try {
     $status = $stmt->execute();
@@ -56,7 +60,7 @@ foreach ($result as $record)
         <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
             <!-- text - start -->
             <div class="mb-10 md:mb-16">
-                <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">ガワさんの日記</h2>
+                <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl"><?= $user_name ?>さんの日記</h2>
                 <p class="mx-auto max-w-screen-md text-center text-gray-500 md:text-lg">日記の一覧</p>
             </div>
             <!-- text - end -->
@@ -65,7 +69,14 @@ foreach ($result as $record)
             </div>
         </div>
     </div>
-    <?php include('include/footer.php'); ?>
+    <?php
+    if ($user_flg === 0) {
+        include('include/footer-admin.php');
+    } else {
+        include('include/footer.php');
+    }
+
+    ?>
 </body>
 
 </html>

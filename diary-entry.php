@@ -1,6 +1,9 @@
 <?php
+session_start();
 // 関数ファイル読み込み
 include('function.php');
+// user_nameを取得
+$user_name = $_SESSION['user_name'];
 
 
 //1.GETでidを取得
@@ -58,7 +61,7 @@ $registration_date_format = date('Y年m月d日', strtotime($registration_date));
         <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
             <h2 class="mb-2 text-center text-2xl font-bold text-gray-800 md:mb-2 lg:text-3xl"><?= $registration_date_format ?></h2>
             <div class="mx-auto max-w-lg">
-                <h3 class="mb-4 text-center text-lg font-bold text-gray-800 md:mb-8 lg:text-2xl">今日の出来事</h3>
+                <h3 class="mb-4 text-center text-lg font-bold text-gray-800 md:mb-8 lg:text-2xl"><?= $user_name ?>さんの出来事</h3>
                 <div>
                     <h4 class="mb-2 inline-block text-sm text-gray-800 sm:text-base font-bold">今日、あなたの中で印象に残った出来事</h4>
                     <p class="md:mb-8"><?= $row["today_events"] ?></p>

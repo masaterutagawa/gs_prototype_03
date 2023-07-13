@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- ホスト: localhost
--- 生成日時: 2023 年 6 月 29 日 06:36
+-- 生成日時: 2023 年 7 月 13 日 14:29
 -- サーバのバージョン： 10.4.28-MariaDB
 -- PHP のバージョン: 8.2.4
 
@@ -48,7 +48,10 @@ INSERT INTO `dev13_card` (`card_id`, `card_filename`, `card_indate`) VALUES
 (8, 'card0008.jpg', '2023-06-23 23:12:19'),
 (9, 'card0009.jpg', '2023-06-23 23:12:24'),
 (10, 'card0010.jpg', '2023-06-23 23:12:28'),
-(16, 'adpDSC_0971-.jpg', '2023-06-29 13:06:32');
+(16, 'adpDSC_0971-.jpg', '2023-06-29 13:06:32'),
+(18, 'card_a.jpg', '2023-07-06 19:06:27'),
+(19, 'visa.jpg', '2023-07-08 13:29:43'),
+(20, 'visa.jpg', '2023-07-08 14:15:04');
 
 -- --------------------------------------------------------
 
@@ -84,7 +87,9 @@ INSERT INTO `dev13_diary` (`diary_id`, `registration_date`, `created_date`, `upd
 (14, '2023-06-29', '2023-06-29 13:10:01', '2023-06-29 13:10:01', '課題提出日', 'いいもんをださないと！', '焦り', -100, '焦りはいいことないかも', 'card0006.jpg', 'いそげー', '課題を急いでやらんとー', 'あせるね', -88, 'こころおちつけたい'),
 (15, '2023-06-29', '2023-06-29 13:11:14', '2023-06-29 13:11:14', '課題提出', 'やべー', 'あせる', -98, '焦り。。', 'adpDSC_0971-.jpg', '悩む', 'どれをえらぶか。。', '迷い', -40, '迷いはないほうがいいかも'),
 (16, '2023-06-29', '2023-06-29 13:28:37', '2023-06-29 13:28:37', 'サウナでのトトノイ', 'ぐうぜんぐうぜん', 'ぐうぜん', 4, 'ぐうぜん', 'card0001.jpg', 'ぐうぜん', 'ぐうぜん', 'ぐうぜん', -1, 'ぐうぜんぐうぜん'),
-(17, '2023-06-29', '2023-06-29 13:28:48', '2023-06-29 13:28:48', 'サウナでのトトノイ', 'ぐうぜんぐうぜん', 'ぐうぜん', 4, 'ぐうぜんさん', 'card0001.jpg', 'ぐうぜん', 'ぐうぜん', 'ぐうぜん', -1, 'ぐうぜんぐうぜん');
+(17, '2023-06-29', '2023-06-29 13:28:48', '2023-06-29 13:28:48', 'サウナでのトトノイ', 'ぐうぜんぐうぜん', 'ぐうぜん', 4, 'ぐうぜんさん', 'card0001.jpg', 'ぐうぜん', 'ぐうぜん', 'ぐうぜん', -1, 'ぐうぜんぐうぜん'),
+(18, '2023-07-06', '2023-07-06 19:03:56', '2023-07-06 19:03:56', 'ドッカー', 'むずい', 'できるんかなー', -30, '想像よりむずいので', 'card0005.jpg', '羽ばたきたい', '成長するかな？', '不安', 90, 'aaa'),
+(19, '2023-07-08', '2023-07-08 13:29:15', '2023-07-08 13:29:15', 'ジーズ', 'ジーズ', 'ジーズ', 13, 'ジーズ', 'card0006.jpg', 'ジーズ', 'ジーズ', 'ジーズ', 78, 'ジーズ');
 
 -- --------------------------------------------------------
 
@@ -99,15 +104,18 @@ CREATE TABLE `dev13_user` (
   `user_pass` varchar(255) NOT NULL,
   `user_mail` varchar(255) NOT NULL,
   `user_flg` int(1) NOT NULL,
-  `user_indate` datetime NOT NULL
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  `deleted_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- テーブルのデータのダンプ `dev13_user`
 --
 
-INSERT INTO `dev13_user` (`user_id`, `user_code`, `user_name`, `user_pass`, `user_mail`, `user_flg`, `user_indate`) VALUES
-(1, 'gawasan', '田川昌輝', 'gawasan', 'tomato@tomato.co.jp', 1, '2023-06-20 18:54:56');
+INSERT INTO `dev13_user` (`user_id`, `user_code`, `user_name`, `user_pass`, `user_mail`, `user_flg`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'gawasan', '田川昌輝', 'gawasan', 'tomato@tomato.co.jp', 0, '2023-06-20 18:54:56', '0000-00-00 00:00:00', NULL),
+(11, 'melon', 'メロン', 'melon', 'tagawa@wakugumi.co.jp', 1, '2023-07-11 22:28:19', '2023-07-11 22:28:19', NULL);
 
 --
 -- ダンプしたテーブルのインデックス
@@ -139,19 +147,19 @@ ALTER TABLE `dev13_user`
 -- テーブルの AUTO_INCREMENT `dev13_card`
 --
 ALTER TABLE `dev13_card`
-  MODIFY `card_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `card_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- テーブルの AUTO_INCREMENT `dev13_diary`
 --
 ALTER TABLE `dev13_diary`
-  MODIFY `diary_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `diary_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- テーブルの AUTO_INCREMENT `dev13_user`
 --
 ALTER TABLE `dev13_user`
-  MODIFY `user_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `user_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
