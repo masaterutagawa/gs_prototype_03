@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 // user_nameを取得
 $user_name = $_SESSION['user_name'];
 $user_flg = $_SESSION['user_flg'];
@@ -16,8 +17,6 @@ $pdo = db_connect();
 // SQL作成&実行
 $sql = "SELECT * FROM dev13_diary ORDER BY registration_date DESC";
 $stmt = $pdo->prepare($sql);
-
-
 
 try {
     $status = $stmt->execute();

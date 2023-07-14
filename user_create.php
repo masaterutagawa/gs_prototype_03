@@ -3,6 +3,7 @@
 if (
     !isset($_POST['user_code']) || $_POST['user_code'] === '' ||
     !isset($_POST['user_name']) || $_POST['user_name'] === '' ||
+    !isset($_POST['user_flg']) || $_POST['user_flg'] === '' ||
     !isset($_POST['user_mail']) || $_POST['user_mail'] === '' ||
     !isset($_POST['user_pass']) || $_POST['user_pass'] === '' ||
     !isset($_POST['user_flg']) || $_POST['user_flg'] === ''
@@ -12,6 +13,7 @@ if (
 
 $user_code = $_POST['user_code'];
 $user_name = $_POST['user_name'];
+$user_flg = $_POST['user_flg'];
 $user_mail = $_POST['user_mail'];
 $user_pass = $_POST['user_pass'];
 $user_flg = $_POST['user_flg'];
@@ -53,6 +55,7 @@ $sql = 'INSERT INTO dev13_user(user_id, user_code, user_name,user_pass, user_mai
 $stmt = $pdo->prepare($sql);
 $stmt->bindValue(':user_code', $user_code, PDO::PARAM_STR);
 $stmt->bindValue(':user_name', $user_name, PDO::PARAM_STR);
+$stmt->bindValue(':user_flg', $user_flg, PDO::PARAM_STR);
 $stmt->bindValue(':user_mail', $user_mail, PDO::PARAM_STR);
 $stmt->bindValue(':user_pass', $user_pass, PDO::PARAM_STR);
 $stmt->bindValue(':user_flg', $user_flg, PDO::PARAM_INT);
@@ -64,5 +67,5 @@ try {
     exit();
 }
 
-header("Location:index.php");
+header("Location:login.php");
 exit();

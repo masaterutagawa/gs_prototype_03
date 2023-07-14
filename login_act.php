@@ -1,6 +1,9 @@
 <?php
+// var_dump($_POST);
+
 session_start();
 $user_code = $_POST['user_code'];
+$user_flg = $_POST['user_flg'];
 $user_pass = $_POST['user_pass'];
 
 // print_r(session_id());
@@ -13,10 +16,11 @@ $pdo = db_connect();
 
 // データ選択ＳＱＬ作成
 // user_code，user_pass，deleted_atの3項目全ての条件満たすデータを抽出する．
-$sql = "SELECT * FROM dev13_user WHERE user_code=:user_code AND user_pass=:user_pass AND deleted_at IS NULL";
+$sql = "SELECT * FROM dev13_user WHERE user_code=:user_code AND user_flg=:user_flg AND user_pass=:user_pass AND deleted_at IS NULL";
 $stmt = $pdo->prepare($sql);
 // 変数をバインド
 $stmt->bindValue(':user_code', $user_code, PDO::PARAM_STR);
+$stmt->bindValue(':user_flg', $user_flg, PDO::PARAM_INT);
 $stmt->bindValue(':user_pass', $user_pass, PDO::PARAM_STR);
 
 try {
@@ -29,7 +33,7 @@ try {
 $user = $stmt->fetch(PDO::FETCH_ASSOC); //1レコードだけ取得する方法
 if (!$user) {
     echo "<p>ログイン情報に誤りがあります</p>";
-    echo "<a href=index.php>ログイン</a>";
+    echo "<a href=login.php>ログイン</a>";
     exit();
 } else {
     $_SESSION = array();
@@ -37,7 +41,7 @@ if (!$user) {
     $_SESSION['chk_ssid'] = session_id();
     $_SESSION['user_name'] = $user['user_name'];
     $_SESSION['user_flg'] = $user['user_flg'];
-    header("Location: diary-index.php");
+    header("Location: index.php");
     exit();
 }
 
