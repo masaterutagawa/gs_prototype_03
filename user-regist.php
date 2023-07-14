@@ -32,12 +32,25 @@ include('function.php');
                                 </div>
                             </div>
                             <div>
-                                <label for="" class="block text-sm font-medium text-neutral-600"> ユーザー名
-                                </label>
+                                <label for="" class="block text-sm font-medium text-neutral-600"> ユーザー名</label>
                                 <div class="mt-1">
                                     <input id="" name="user_name" type="text" autocomplete="" required="" placeholder="ユーザー名" class="block w-full px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300">
                                 </div>
                             </div>
+                            <label for="" class="block text-sm font-medium text-neutral-600"> 権限</label>
+                            <div class="space-y-4 sm:flex sm:items-center sm:space-x-10 sm:space-y-0">
+                                <div class="flex items-center">
+                                    <input id="kanrisya" name="user_flg" type="radio" checked class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600" value="0">
+                                    <label for="kanrisya" class="ml-3 block text-sm font-medium leading-6 text-gray-900">編集者</label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input id="eturansya" name="user_flg" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600" value="1">
+                                    <label for="eturansya" class="ml-3 block text-sm font-medium leading-6 text-gray-900">閲覧者</label>
+                                </div>
+                            </div>
+
+
+
                             <div>
                                 <label for="" class="block text-sm font-medium text-neutral-600"> メールアドレス
                                 </label>
@@ -52,8 +65,6 @@ include('function.php');
                                     <input id="" name="user_pass" type="password" autocomplete="" required="" placeholder="パスワード" class="block w-full px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300">
                                 </div>
                             </div>
-                            <!-- 1は一般ユーザとして識別 -->
-                            <input id="" name="user_flg" type="hidden" value="1">
                             <div>
                                 <button type="submit" class="flex items-center justify-center w-full px-10 py-4 text-base font-medium text-center text-white transition duration-500 ease-in-out transform bg-blue-600 rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">新規ユーザー登録</button>
                             </div>
